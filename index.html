@@ -3,16 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Helloo Arael</title>
-    <link rel="stylesheet" href="style.css">
+    <title>QR Code Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        #qrcode {
+            margin: 20px auto;
+        }
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #0078D4;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Hello, Arael!</h1>
-        <p>Welcome to your test webpage. Feel free to explore and customize this page.</p>
-        <button onclick="showMessage()">Click Me</button>
-        <p id="message"></p>
-    </div>
-    <script src="script.js"></script>
+    <h1>QR Code Generator</h1>
+    <input type="text" id="qrText" placeholder="Enter text to generate QR code" />
+    <button onclick="generateQRCode()">Generate QR Code</button>
+    <div id="qrcode"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+        function generateQRCode() {
+            const qrText = document.getElementById("qrText").value;
+            const qrCodeContainer = document.getElementById("qrcode");
+            qrCodeContainer.innerHTML = ""; // Clear previous QR code
+
+            if (qrText) {
+                new QRCode(qrCodeContainer, {
+                    text: qrText,
+                    width: 200,
+                    height: 200,
+                });
+            } else {
+                alert("Please enter some text to generate a QR code.");
+            }
+        }
+    </script>
 </body>
 </html>
