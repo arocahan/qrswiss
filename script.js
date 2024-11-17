@@ -1,6 +1,17 @@
-function showMessage() {
-    const messageElement = document.getElementById("message");
-    messageElement.textContent = "You clicked the button! Have a great day, Arael!";
-    messageElement.style.color = "#0078D4";
-    messageElement.style.marginTop = "20px";
+function generateQRCode() {
+    const qrText = document.getElementById("qrText").value;
+    const qrCodeContainer = document.getElementById("qrcode");
+
+    // Clear any previous QR code
+    qrCodeContainer.innerHTML = "";
+
+    if (qrText) {
+        new QRCode(qrCodeContainer, {
+            text: qrText,
+            width: 200,
+            height: 200,
+        });
+    } else {
+        alert("Please enter some text to generate a QR code.");
+    }
 }
